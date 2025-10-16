@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}F1 Merch Store - CTF{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; padding-top: 70px; }
+        .card { margin-bottom: 20px; }
+        .card-img-top { height: 200px; object-fit: contain; }
+        .flag { color: green; font-weight: bold; }
+    </style>
+    
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('shop') }}">F1 Merch Store</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('shop') }}">Магазин</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('cart') }}">Корзина</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('news') }}">Новости</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('standings') }}">Таблица конструкторов</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('teams') }}">Команды</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">О нас</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('contact') }}">Контакты</a></li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    {% if username %}
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Выход ({{ username }})</a></li>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Вход</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('register') }}">Регистрация</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
