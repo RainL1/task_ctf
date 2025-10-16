@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Магазин{% endblock %}
+{% block content %}
+    <h1 class="text-center mb-4">Магазин Мерча Формулы 1</h1>
+    <p class="text-center">Твой баланс: {{ balance }} монет</p>
+    {% if flag %}
+        <p class="text-center flag">Поздравляем! Ты купил флаг: {{ flag }}</p>
+    {% endif %}
+    <div class="row">
+        {% for item in goods %}
+            <div class="col-md-4">
+                <div class="card">
+                    {% if item.image %}
+                        <img src="{{ item.image }}" class="card-img-top" alt="{{ item.name }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.name }}</h5>
+                        <p class="card-text">Цена: {{ item.price }} монет</p>
+                        <form method="POST" action="{{ url_for('add_to_cart') }}">
+                            <input type="hidden" name="item_id" value="{{ item.id }}">
+                            <div class="input-group mb-3">
+                                <input type="number" name="qty" value="1" class="form-control" required>
+                                <button type="submit" class="btn btn-primary">Добавить в корзину</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
