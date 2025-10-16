@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Таблица Конструкторов{% endblock %}
+{% block content %}
+    <h1 class="text-center mb-4">Таблица Конструкторов 2025 (на 15 октября)</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Позиция</th>
+                <th>Команда</th>
+                <th>Очки</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for s in standings %}
+                <tr>
+                    <td>{{ s.pos }}</td>
+                    <td>{{ s.team }}</td>
+                    <td>{{ s.pts }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
