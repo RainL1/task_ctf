@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Команды{% endblock %}
+{% block content %}
+    <h1 class="text-center mb-4">Команды Формулы 1</h1>
+    <div class="list-group">
+        {% for team in teams %}
+            <div class="list-group-item">
+                <h5>{{ team.name }}</h5>
+                <p>{{ team.description }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
